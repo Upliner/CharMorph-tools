@@ -13,7 +13,7 @@ delta = []
 full = []
 
 
-for file in os.listdir("."):
+for file in sorted(os.listdir(".")):
     if not file.endswith(".npz") and not file.endswith(".npy"):
         continue
     z = numpy.load(file)
@@ -37,11 +37,13 @@ for file in os.listdir("."):
             idx.extend(z["idx"])
             delta.extend(z["delta"])
 
-numpy.savez(
-    "__pack__.npz",
-    names=names,
-    cnt=numpy.array(cnt, dtype=numpy.int16),
-    idx=numpy.array(idx, dtype=numpy.uint16),
-    delta=numpy.array(delta, dtype=numpy.float32),
-    full=numpy.array(full, dtype=numpy.float32),
-)
+data = {
+    "names": names,
+    "cnt": numpy.array(cnt, dtype=numpy.int16),
+    "idx": numpy.array(idx, dtype=numpy.uint16),
+    "delta": numpy.array(delta, dtype=numpy.float32),
+}
+if full:
+    data["full"] = full
+
+numpy.savez("__pack__.npz", **data)
