@@ -20,7 +20,7 @@ with open(sys.argv[1],"r") as f:
             morphs = {}
             morph = None
             act[name] = morphs
-            lst = getattr(lists, name)
+            lst = getattr(lists, name, None)
         if morphs is None:
             continue
         if line.startswith("targetGeom "):

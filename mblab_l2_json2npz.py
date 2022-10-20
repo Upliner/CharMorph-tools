@@ -3,8 +3,8 @@
 import sys, json, numpy
 
 if len(sys.argv) < 3:
-   print("Usage: mb_lab_l2_json2npz.py outdir/ file1.json [file2.json...]")
-   exit()
+    print("Usage: mblab_l2_json2npz.py outdir/ file1.json [file2.json...]")
+    exit()
 
 outdir = sys.argv[1]
 
